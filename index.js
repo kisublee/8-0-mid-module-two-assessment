@@ -154,8 +154,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 if (movies.length === 0) {
   throw "error"
 }
-// console.log(typeof Number(movies[0].releasedOnDVD.split(" ")[2]))
-// console.log(year)
+
 const final = movies.filter((movie) => Number(movie.released.split(" ")[2]) <= year ? movie : "")
   
 return final
@@ -186,74 +185,16 @@ return final
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {
+const getRottenTomatoesScoreByMovie = (movies) => {
 //rating is gonna be Rotten Tomatoes'
   if (movies.length === 0) {
     throw "error"
   }
-//movie.ratings.find((e) => e.source === "Rotten Tomatoes" ? e.value : 0)
-// const findRating = movies.find((e) => e.ratings[1].value)
-// console.log(findRating)
-// const isMap = movies.map((movie) => movie.title)
-// let arr = []
+
+const movieScoreWithRotten = movies.map((movie) => ({[movie.title]: movie.ratings.find((e) => e.source === "Rotten Tomatoes").value}))
 
 
-// const isMap = movies.map((movie) => ({[movie.title]: Object.values(movie.ratings.find((e => e.source ==="Rotten Tomatoes")))}))
-let hold = ""
-
-// for (const i of movies) {
-
-// let find = i.ratings.find((e => {
-  
-//   if (e.source ==="Rotten Tomatoes") {
-//     let getIt = Object.values(e)
-//     hold = getIt[1]
-
-   
-//   }
-
-
-// }))
-// }
-
-const testing = movies.map((movie) => {
-
-let find = movie.ratings.find((e) => {
-  
-  if (e.source ==="Rotten Tomatoes" ) {
-    let getIt = Object.values(e)
-    hold = getIt[1]
-  }
-
-})
-
- return ({[movie.title]:hold })
-
-})
-
-return testing
-// const isMap = movies.map((movie) => ({[movie.title]:hold }))
-
-
-
-
-
-console.log(hold)
-console.log(testing)
-
-
-
-// return isMap
-
-
-// for (const i of movies) {
-//   let find = i.ratings.find((e) =>{
-
-//     if (e.source ==="Rotten Tomatoes") {
-//       isMap[movie.title] = e.value
-//     }
-//   } 
-//   )}
+return movieScoreWithRotten
 
 }
 
